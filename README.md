@@ -1,4 +1,5 @@
 # nginx-git-html
+```
 version: "3.3"
 services:
   beta-user:
@@ -14,3 +15,4 @@ services:
         constraints:
         - node.labels.html_user == html_user 
         
+```
