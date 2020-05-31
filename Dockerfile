@@ -13,6 +13,9 @@ ADD default /etc/nginx/sites-available/default
 ADD check.sh /home/check.sh
 RUN chmod 777 /home/check.sh
 WORKDIR /home
-HEALTHCHECK --interval=60s --timeout=3s --retries=60 CMD curl --fail http://localhost || exit 1
+
+
+EXPOSE 8080 80 443 3000 
+HEALTHCHECK --interval=10s --timeout=3s --retries=100 CMD curl --fail http://localhost/index.html || exit 1
 ENTRYPOINT ["/bin/sh", "check.sh"]
 
