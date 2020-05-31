@@ -12,6 +12,9 @@ RUN rm -rf /etc/nginx/sites-available/default
 ADD default /etc/nginx/sites-available/default
 ADD check.sh /home/check.sh
 RUN chmod 777 /home/check.sh
+
+RUN rm -rf /var/www/html
+
 WORKDIR /home
 
 
