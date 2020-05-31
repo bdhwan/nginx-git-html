@@ -7,7 +7,7 @@ echo "ok"
 echo "GIT_URL: "$GIT_URL
 echo "DST_FOLDER: "$DST_FOLDER
 
-git clone "$GIT_URL"
+git clone --depth 1 --single-branch --branch master $BRANCH "$GIT_URL"
 
 rm -rf /var/www/html
 
