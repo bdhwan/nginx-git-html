@@ -8,6 +8,7 @@ services:
     environment:
     - GIT_URL=some_git_url_with_id_pw_if_need
     - DST_FOLDER=root_folder_from_git_url
+    - BRANCH=master
     ports:
     - "8010:80"
     deploy:
