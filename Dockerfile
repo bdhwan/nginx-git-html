@@ -1,22 +1,15 @@
-FROM ubuntu:16.04
-MAINTAINER bdhwan@gmail.com
+FROM bdhwan/nginx-git-ngx-html:0.0.1
 
+ADD ./ssl /etc/nginx/ssl
+RUN chmod 755 -R /etc/nginx/ssl
 
-RUN sed -i 's/archive.ubuntu.com/kr.archive.ubuntu.com/g' /etc/apt/sources.list
-RUN apt-get update
-RUN apt-get install -y vim
-RUN apt-get install -y git
-RUN apt-get install -y nginx 
-RUN apt-get install -y curl 
 RUN rm -rf /etc/nginx/sites-available/default
 ADD default /etc/nginx/sites-available/default
-ADD check.sh /home/check.sh
-RUN chmod 777 /home/check.sh
 
-RUN rm -rf /var/www/html
 
 WORKDIR /home
 
+ADD ./check.sh /home/check.sh
 
 EXPOSE 8080 80 443 3000 
 HEALTHCHECK --interval=10s --timeout=3s --retries=100 CMD curl --fail http://localhost/index.html || exit 1
